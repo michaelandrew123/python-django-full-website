@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="border: 2px solid #000;">
+        <h2>This is the body</h2>
+        <p>Accounts</p>    
+        {% for account in accounts %}
+            <!-- <p>{{ account }}</p> -->
+            {% include 'snippets/account_body_snippet.html' with value=account %} 
+        {% endfor %} 
+    </div>
+{% endblock %}
