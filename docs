@@ -1,0 +1,133 @@
+Install Python
+
+
+python.org
+open terminal and type python to check the version or it run correctly in your computer
+python -V
+
+djangoproject.com and check the documentations
+before anything else you need to install virtualenv in your system
+
+install virtualenv
+
+
+create folder in D drive or wherever you like
+Open cmd to your computer and type with the ff command
+virtualenv CodeWithMichael
+cd CodeWithMichael
+Scripts\activate
+
+install django to your project
+pip install django
+to uninstall django we can only type the command pip uninstall django
+django-admin startproject mysite
+
+to run the server
+cd to your project mysite
+then type python manage.py runserver
+
+check library that you already install in your local environment
+pip freeze
+add txt file to record your library isntall and evertime you add a library always type this command
+pip freeze > requirements.text
+to install the library automatically into your production environments without typing by manual
+pip install -r requirements.text
+
+pip install -U pylint --user --> this is not required maybe
+
+
+creating python apps 
+cd src
+python manage.py startapp personal
+
+
+add to your settings the installed app 
+src/mysite/settings.py
+
+add templates dir folder
+create base.html
+tell the site that we have base.html 
+go to settings.py TEMPLATES
+inside DIR [
+    os.path.join(BASE_DIR, 'template')
+]
+and import os
+
+
+Create View
+Go to mysite>urls
+
+Add templates 
+
+Passing variable from view.py to templates
+
+Create superuser
+create migration for database 
+pythom manage.py migrate
+python manage.py createsuperuser
+
+Django models
+go to you personal>models
+model field reference link
+https://docs.djangoproject.com/en/3.1/ref/models/fields/
+py manage.py makemigrations 
+py manage.py migrate
+
+
+Create custom user
+python manage.py startapp account
+add account app to your mysite>settings.py
+https://docs.djangoproject.com/en/3.1/search/?q=substituting+a+custom+user+model
+customize model
+add auth_user_model="account.Account" in mysite>settings
+delete all existing in migrations folder
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py createsuperuser
+
+Customizing django account>admin
+Once the one model delted we can update the migration using same command
+python manage.py makemigrations
+python manage.py migrate
+
+Custom User Registration Django(AbstracBaseUser and UserCreationForm)
+
+
+
+Updating User Accounts with Forms
+
+
+Installing bootstrap
+
+
+Reset Password and Change Password
+djangoproject -> module-django.contrib.auth.views
+https://docs.djangoproject.com/en/3.1/topics/auth/default/#module-django.contrib.auth.views
+https://github.com/mitchtabian/CodingWithMitch-Blog-Course
+
+
+Blog Post Model (Django)
+python manage.py startapp Blog
+    install special library to handle image file
+    pip install pillow
+    pip freeze > requirements.txt
+
+
+Django Static Files (Images)
+https://docs.djangoproject.com/en/3.1/howto/static-files/
+    store thing to amazon services
+    python manage.py collectstatic #move the files from static folder to static_cdn folder
+
+Modeling the Blog using Reddit.com
+    study bootstrap grid system for more accurate in web styling design
+
+
+Creating Blog Posts using a Form
+
+
+Blog Search Bar (Django Q Lookup)
+
+
+
+Pagination and Custom Search Queries (Django)
