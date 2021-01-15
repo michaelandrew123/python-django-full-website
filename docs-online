@@ -1,0 +1,12 @@
+https://www.pythonanywhere.com/
+
+mkvirtualenv --python=/usr/bin/python3.7 crm-virtualenv
+pip install -r requirements.txt
+
+
+
+create web 
+paste file path: /home/suarezmike129/python-django-full-website
+
+setting.py 
+ALLOWED_HOSTS = ['*']

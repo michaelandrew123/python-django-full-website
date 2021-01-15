@@ -57,34 +57,35 @@
 
 			{% if blog_posts %}
 				{% for post in blog_posts %}
-					<div class="blog-post-container">
+					<div class="blog-post-container" >
 						{% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
 					</div>
 				{% endfor %}
 			{% else %}
 				<div class="blog-post-container">
-
+			 
 					{% include 'blog/snippets/blog_post_snippet.html' with query=query %}
 					
 
 				</div>
 			{% endif %}
 			<!-- End Blog posts-->
+			
+		<!-- Pagination -->
+		{% include 'blog/snippets/blog_post_pagination.html' with blog_posts=blog_posts%}
+		<!-- End Pagination-->
+		
 		</div>
 		<!-- end blog feed -->
 		
-		<!-- Pagination -->
-			{% include 'blog/snippets/blog_post_pagination.html' with blog_posts=blog_posts%}
-		<!-- End Pagination-->
-		
 		
 		<!-- Right 'create post' column  -->
-		<div class="right-column col-lg-3 d-lg-flex d-none flex-column">
+		<div class="right-column col-lg-3 d-lg-flex d-none flex-column" >
 
 			<div class="card create-post-bar d-flex flex-column p-3">
 				<img class="img-fluid d-block m-auto pb-2" src="{% static 'logo.jpg' %}" width="72" height="72">
 				<p class="lead">In this course you'll learn how to build a simple blog with user registration and blog CRUD functionality. Django is a powerful 
-  					framework and you'll see why in this course.</p>
+  					framework and you'll see why in this course. Feel free to update the code!</p>
 				<p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p>
 			</div>
 		
