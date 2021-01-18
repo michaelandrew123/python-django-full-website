@@ -1,6 +1,6 @@
- 
 
-<style> 
+
+<style>
     /* .container {
     max-width: 960px;
     } */
@@ -31,29 +31,29 @@
             Hello, {{ request.user.username }}
         {% endif %}
     </h5>
+    {% if request.user.is_authenticated %}
+        <div class="search-bar mt-sm-2 mr-2">
+            <form method="GET">
 
-    <div class="search-bar mt-sm-2 mr-2">
-        <form method="GET">
+                <input type="text" name="q" class="form-control" id="id_q" placeholder="Search..." />
+            </form>
 
-            <input type="text" name="q" class="form-control" id="id_q" placeholder="Search..." />
-        </form>
-
-    </div>
-    
+        </div>
+    {% endif %}
     <nav class="my-2 my-md-0 me-md-3">
-        
+
         {% if request.user.is_authenticated %}
             <a class="p-2 text-dark" href="{% url 'home' %}">Home</a>
             <a class="p-2 text-dark" href="{% url 'account' %}">Account</a>
-            <a class="p-2 text-dark" href="{% url 'logout-account' %}">Logout</a> 
-        {% else %} 
+            <a class="p-2 text-dark" href="{% url 'logout-account' %}">Logout</a>
+        {% else %}
             <a class="p-2 text-dark" href="{% url 'register'%}">Register</a>
-            <a class="btn btn-outline-primary" href="{% url 'login-account'%}">Login</a>  
-        {% endif %}    
-    </nav> 
+            <a class="btn btn-outline-primary" href="{% url 'login-account'%}">Login</a>
+        {% endif %}
+    </nav>
 </header>
-  
+
 
 <script type="text/javascript">
-    document.getElementById('id_q').value = "{{query}}" 
+    document.getElementById('id_q').value = "{{query}}"
 </script>
