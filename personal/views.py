@@ -20,9 +20,7 @@ def home_screen_view(request):
         context['query'] = str(query)
 
     blog_posts = sorted(get_blog_queryset(query), key=attrgetter('date_updated'), reverse=True)
-    
-    
-
+     
     #Pagination
     page = request.GET.get('page', 1)
     blog_posts_paginator = Paginator(blog_posts, BLOG_POSTS_PER_PAGE)

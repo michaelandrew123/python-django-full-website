@@ -37,11 +37,9 @@
 	}
 </style>
 <div class="container">
-	<div class="row">
-
+	<div class="row"> 
 		<!-- blog feed -->
-		<div class="left-column col-lg-7 offset-lg-1">
-
+		<div class="left-column col-lg-7 offset-lg-1"> 
 			<!-- Top 'create post' bar -->
 			<div class="d-lg-none mb-3">
 				<div class="card m-auto d-flex flex-column p-3">
@@ -51,22 +49,18 @@
 					<p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p>
 				</div>
 			</div>
-			<!-- end Top 'create post' bar -->
-
-			<!-- Blog posts-->
-
+			<!-- end Top 'create post' bar --> 
+			<!-- Blog posts--> 
 			{% if blog_posts %}
 				{% for post in blog_posts %}
 					<div class="blog-post-container" >
+ 
 						{% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
 					</div>
 				{% endfor %}
 			{% else %}
-				<div class="blog-post-container">
-
-					{% include 'blog/snippets/blog_post_snippet.html' with query=query %}
-
-
+				<div class="blog-post-container"> 
+					{% include 'blog/snippets/blog_post_snippet.html' with query=query %} 
 				</div>
 			{% endif %}
 			<!-- End Blog posts-->
@@ -80,17 +74,18 @@
 
 
 		<!-- Right 'create post' column  -->
-		<div class="right-column col-lg-3 d-lg-flex d-none flex-column" >
-
+		<div class="right-column col-lg-3 d-lg-flex d-none flex-column" > 
 			<div class="card create-post-bar d-flex flex-column p-3">
 				<img class="img-fluid d-block m-auto pb-2" src="{% static 'WellStock.png' %}" width="72" height="72">
 				<p class="lead">We are still looking forward to upgrade the site and we will try our best to add more features to make you happy and satified while using our site. Enjoy!</p>
 				<p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p>
-			</div>
-
-		</div>
-		<!-- end Right 'create post' column  -->
-
+			</div> 
+			<div class="card create-post-bar d-flex flex-column p-3">
+				<p class="lead text-center ">Your daily quotes</p>
+				<p class="m-auto"><a class="btn btn-primary" href="{% url 'quotes:create' %}">Add Quotes</a></p>
+			</div> 
+		</div>  
+		<!-- end Right 'create post' column  --> 
 	</div>
 </div>
 

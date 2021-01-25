@@ -1,0 +1,89 @@
+{% extends 'base.html'%}
+{% block content %} 
+    <style> 
+    </style>
+{% if msg_ %}
+   <div class="alert alert-success"> 
+       <p>{{ msg_ }}</p>
+   </div> 
+{% endif %}
+
+    <div class="container">  
+      
+        <div class="position-relative">
+ 
+
+            <div class="row place-form">
+                <div class="col-md-5">
+                    
+                    <h4 class="text-center">Restaurant</h4>
+                    <form method = "post">    {% csrf_token %}     
+                            
+                        <select name="place" id="id_place">
+                            {% for place in placeform %} 
+                                <option value="{{ place.id }}">{{ place.name }}</option> 
+                            {% endfor %}
+                        </select>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" name="serves_hot_dogs" type="checkbox" id="id_serves_hot_dogs" checked>
+                            <label class="form-check-label" for="id_serves_hot_dogs">Hot Dogs</label>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" name="serves_pizza" type="checkbox" id="id_serves_pizza" checked>
+                            <label class="form-check-label" for="id_serves_pizza">Pizza</label>
+                        </div>
+
+                          
+                        <!-- <div class="mb-3">
+                            <label for="id_name" class="form-label">Name</label>
+                            <input type="text" name="name"  class="form-control" maxlength="50" id="id_name" placeholder="Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_address" class="form-label">Address</label>
+                            <input type="text" name="address"  class="form-control" maxlength="80" id="id_address" placeholder="Address">
+                        </div>  -->
+                        <button type="submit" class="btn btn-primary">Save</button> 
+                    </form>  
+                </div>
+            </div>
+
+            <table class="table table-striped table-hover">
+                <thead>
+                    <th>Place</th>
+                    <th>Serve Hot Dog</th>
+                    <th>Serve Pizza</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+
+                    {% for restaurant in view_restaurant %}
+                    <tr>
+                        <td>
+                            {{ restaurant.place.name }}
+                        </td>
+                        <td>
+                            {{ restaurant.serves_hot_dogs }}
+                        </td>
+                        <td>
+                            {{ restaurant.serves_pizza }}
+                        </td>
+                        <td>
+                            <a href="" class="badge bg-info">Edit</a>
+                            <a href="" class="badge bg-danger"> delete </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+ 
+                
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+<div class="container">
+    <div class="row" data-masonry='{"percentPosition": true }'>
+
+
+        {% for quote in quotes %}
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ quote.title }}</h3>
+                        <p class="card-text">{{ quote.description}}</p>    
+                        <small>Category: <b class="badge bg-dark">{{ quote.category}}</b></small>
+                        <small>Author: <b class="badge bg-success">{{ quote.author}}</b></small>
+                       
+                        
+                    </div> 
+                    <div class="card-footer">
+                        {% if quote.author == request.user%}  
+                          <a href="{% url 'quotes:edit' quote.id %}" class="card-link btn btn-sm btn-primary">Edit</a> 
+                        {% endif %}
+                        {% if quote.author == request.user%}  
+                          <a href="{% url 'quotes:delete' quote.id %}" class="card-link btn btn-sm btn-danger">Delete</a> 
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+ 
+        
+    </div>
+</div>
+{% endblock %}

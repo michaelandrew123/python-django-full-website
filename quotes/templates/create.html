@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style type="text/css">
+    .create-quotes-form {
+          width: 100%;
+          max-width: 100%;
+          padding: 15px;
+          margin: auto;
+        }
+
+        .submit-button{
+            max-width: 200px;
+        }
+        #id_category{
+          padding: 8px 5px;
+        }
+  </style>
+
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-7 offset-lg-1">
+              <form class="create-quotes-form" method="post" >{% csrf_token %}
+
+                  <!-- title -->
+                  <div class="form-group">
+                      <label for="id_quotes_title">Title</label>
+                      <input class="form-control" type="text" name="title" id="id_quotes_title" placeholder="Title" required autofocus>
+                  </div>
+
+                  <!-- Body -->
+                  <div class="form-group mb-2">
+                      <label for="id_quotes_description">Description</label>
+                      <textarea class="form-control" rows="10" type="text" name="description" id="id_quotes_description" placeholder="This blog is about..." required></textarea>
+                  </div>
+
+                  <!-- Category -->
+                  <div class="form-group"> 
+                    {{ categories.category }} 
+                  </div>
+
+                  <!-- Submit btn -->
+                  <button class="submit-button btn btn-lg btn-primary btn-block mt-2" type="submit">Post Quotes</button>
+              </form>
+          </div>
+      </div>
+  </div>
+
+
+{% endblock %}
+
+<script> 
+  document.getElementById('id_category').setAttribute("class", "form-select"); 
+</script>

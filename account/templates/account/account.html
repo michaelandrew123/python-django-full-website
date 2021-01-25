@@ -39,13 +39,27 @@
     }
 </style>
 <main class="form-signin">
-    <form class="form-signin" method="post">{% csrf_token %}
-        <div class="d-flex flex-column pb-3">
+     
+    <div class="d-flex d-column">
+
+
+        {{ request.account.username }}
+        <!-- {{ request.user.account }}
+{% for account_prof in account_profile %}  
+    {% if request.user == account_prof.email %} 
+        <img class="rounded-circle m-auto" alt="Profile picture" src="http://127.0.0.1:8000/media/{{ account_prof.profile_pic }} ">
+    {% endif %}
+{% endfor %}  -->
+</div>
+
+
+
+    <form class="form-signin" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <!-- <div class="d-flex flex-column pb-3">
             <img class="img-fluid mx-auto d-block" src="{% static 'WellStock.png' %}" alt="" width="72" height="72">
-        </div>
+        </div> -->
 
         <h1 class="h3 mb-3 fw-normal text-center">Account</h1>
-
         <input type="email" name="email" value="{{ account_form.initial.email }}" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
 
         <input type="text" name="username"  value="{{ account_form.initial.username }}" id="inputUsername" class="form-control" placeholder="username" required>

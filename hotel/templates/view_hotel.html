@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% block content %}
+  
+<div class="row" data-masonry='{"percentPosition": true }'>
+    {% for hotel in hotel_images %} 
+        <div class="col-md-4">  
+            <div class="card auto  mt-2 mb-2">
+                <img src="{{ hotel.hotel_Main_Img.url }}" class="img-responsive " style="width: 100%; float: left; margin-right: 10px;" /> 
+        
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ hotel.name }}
+                    </h5> 
+                </div> 
+            </div> 
+         </div> 
+    {% endfor %}       
+</div>
+{% endblock %}

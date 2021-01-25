@@ -39,6 +39,8 @@ urlpatterns = [
     path('account-view/', account_view, name='account'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('blog/', include('blog.urls'), name='blog'),
+    path('quotes/', include('quotes.urls'), name='blog'),
+    path('hotel/', include('hotel.urls'), name='hotel'),
     path('logout-account/', logout_view, name='logout-account'),
     path('login-account/', login_view, name='login-account'),    
     path('must-authenticate/', must_authenticated_view, name='must-authenticate'),    

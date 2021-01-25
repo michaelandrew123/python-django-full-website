@@ -9,14 +9,14 @@ class RegistrationForm(UserCreationForm):
 
     class Meta:
         model = Account
-        fields = ('email', 'username', 'password1', 'password2')
+        fields = ('email', 'username', 'password1', 'password2',)
 
 class AccountAuthenticationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
     
     class Meta:
         model = Account
-        fields = ('email', 'password')
+        fields = ('email', 'password',)
 
     def clean(self):
         if self.is_valid():
@@ -30,7 +30,7 @@ class AccountUpdateForm(forms.ModelForm):
     
     class Meta:
         model = Account
-        fields = ('email', 'username')
+        fields = ('email', 'username',)
 
     def clean_email(self):
         if self.is_valid():
@@ -50,8 +50,7 @@ class AccountUpdateForm(forms.ModelForm):
                 return username
             raise forms.ValidationError("Username %s is already in use. " % username)
 
-
-
+ 
 
 
 

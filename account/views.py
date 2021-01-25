@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from account.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 
 from blog.models import BlogPost
+from account.models import Account
 
 
 
@@ -63,19 +64,22 @@ def account_view(request):
         if form.is_valid():
             form.initial = {
                 "email": request.POST['email'],
-                "username": request.POST['username'],
+                "username": request.POST['username'], 
             }
             form.save()
             context['success_message'] = "Updated!"
-    else:
+    else: 
         form = AccountUpdateForm(
                 initial = {
                     "email": request.user.email,
-                    "username": request.user.username,
+                    "username": request.user.username 
                 }
         )
     context['account_form'] = form
 
+    # context['account_profile'] = Account.objects.all()
+    # account = request.user.account
+    # account = 
 
     blog_posts = BlogPost.objects.filter(author=request.user)
     context['blog_posts'] = blog_posts
