@@ -38,6 +38,9 @@
 </style>
 <div class="container">
 	<div class="row"> 
+
+	
+
 		<!-- blog feed -->
 		<div class="left-column col-lg-7 offset-lg-1"> 
 			<!-- Top 'create post' bar -->
@@ -54,7 +57,6 @@
 			{% if blog_posts %}
 				{% for post in blog_posts %}
 					<div class="blog-post-container" >
- 
 						{% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
 					</div>
 				{% endfor %}

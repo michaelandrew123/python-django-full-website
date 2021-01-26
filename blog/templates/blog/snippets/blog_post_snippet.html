@@ -6,6 +6,9 @@
 	.card-body{
 		padding: 20px;
 	}
+	.view-more{
+		cursor: pointer; 
+	}
 </style>
 
 {% if blog_post %}
@@ -14,22 +17,139 @@
 	<div class="row">
 
 		<!-- Blog Post -->
+
+		
 		<div class="card m-auto">
+ 
+			<a href="{% url 'blog:detail' post.slug %}">
+				<h2 class="card-title">{{blog_post.title}}</h2>
+			</a>
+
+			<p class="card-text">{{blog_post.body|safe|truncatechars:250}}</p>
+
+
+ 
+			
+				<div class="d-flex justify-content-between my-2">
+					<p class="mb-0">
+						Updated on {{blog_post.date_updated}} 
+						by {{blog_post.author}} 
+					</p> 
+				 
+
+				
+
+					{% if blog_post.author == request.user %}
+					
+					<div class="dropdown dropleft">
+						<a class="toggle btn-sm" href="#" role="button" id="updatelinks{{blog_post.id}}" data-bs-toggle="dropdown" aria-expanded="true">
+						   {% include './icons/three-dots.html' %}
+						</a>
+					  
+						<ul class="dropdown-menu " aria-labelledby="updatelinks{{blog_post.id}}">
+						  <li>	
+							  <a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-link text-decoration-none">Update</a>
+						  </li>
+						  <li><a class="dropdown-item" href="#">Another action</a></li>
+						  <li><a class="dropdown-item" href="#">Something else here</a></li>
+						</ul>
+					</div> 
+					{% endif %}
+				</div>
+
+				<!-- <div class="d-flex justify-content-end">
+					{% if blog_post.author == request.user %}
+						<a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-link">Update</a>
+					{% endif %}
+				</div>  -->
+
+
+
 			<a href="{% url 'blog:detail' post.slug %}">
 				<img class="card-img-top" src="{{blog_post.image.url}}">
 			</a>
 			
+
+
 			<div class="card-body mt-2 mb-2">
-				<a href="{% url 'blog:detail' post.slug %}">
-					<h2 class="card-title">{{blog_post.title}}</h2>
-				</a>
-				<p class="card-text">{{blog_post.body|safe|truncatechars:250}}</p>
-				{% if blog_post.author == request.user %}
-					<a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-primary">Update</a>
-				{% endif %}
+
+				<div class="d-block py-2">
+				
+
+
+					<!-- {% if blog_post.author == request.user %}
+						<a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-primary">Update</a>
+					{% endif %} -->
+				</div>
+ 
+				<div class="d-inline px-2"> 
+					<span style="cursor: pointer;"> 
+						{% include './icons/hand-thumbs-up-black.html'%}
+						Like
+					</span> 
+				</div>
+				<div class="d-inline px-2"> 
+					<span style="cursor: pointer;">
+						{% include './icons/chat-right.html'%}
+						Comment
+					</span> 
+				</div>
+				<div class="d-inline float-end px-2"> 
+					<span style="cursor: pointer;">
+						{% include './icons/reply.html' %}
+						Share
+					</span>  
+				</div> 
 			</div>
-			<div class="card-footer text-muted">
-			  Updated on {{blog_post.date_updated}} by {{blog_post.author}}
+			<div class="card-footer text-muted">  
+
+				 <!-- {{ comments.count }} -->
+
+
+				  {% for comment in comments %}  
+ 
+<!-- 				  
+				  		post.body|safe|truncatewords:"50"|linebreaks -->
+
+
+
+
+					  	{% if comment.blog_post.id == blog_post.id %}
+							<div class="d-flex text-muted pt-3">
+								<svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+								<div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+
+									<div class="d-flex justify-content-between">
+										<strong class="text-gray-dark">{{ comment.author.username }}</strong> 
+										<a href="#">Follow</a> 
+									</div>
+									<span class="d-block"> 
+										{{ comment }}  
+									</span>
+								</div>
+							</div>  
+						{% endif %}
+
+
+
+
+
+			  		{% endfor %} 
+				  <div class="py-2">
+					  <span  class="view-more view-more-comment-{{ blog_post.id }}" rel="{{ blog_post.id }}"> View more comments  </span>
+				  </div>
+
+				  {{ comment_success }}
+				
+				<div class="">     
+					<form method="POST" onclick="this.disabled=true,this.form.submit();">  {% csrf_token %}
+						<!-- <textarea class="form-control" style="word-break: break-all;" id="exampleFormControlTextarea1" rows="3"></textarea>
+				 -->
+				 		<input type="text" name="comment">
+				 		<input type="hidden" name="blog_post" value="{{ blog_post.id }}">
+						<input type="submit" style="visibility: hidden;" />
+					</form>
+				</div> 
 			</div>
 		</div>
 	</div>
@@ -50,3 +170,4 @@
 		</div>
 	</div>
 {% endif %}
+

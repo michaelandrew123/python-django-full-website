@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'quotes',
     'hotel',
+    'comment',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

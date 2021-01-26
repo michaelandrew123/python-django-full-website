@@ -78,5 +78,7 @@ def restaurant_(request):
     context['view_restaurant'] = view_restaurant 
 
 
+    
+
     return render(request, 'restaurant/r_index.html', context)
 
