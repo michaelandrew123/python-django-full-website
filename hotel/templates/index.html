@@ -1,9 +1,42 @@
 {% extends 'base.html'%}
 {% block content %}
-    <form method = "post" enctype="multipart/form-data"> 
+
+    <!-- <form method = "post" enctype="multipart/form-data"> 
         {% csrf_token %} 
         {{ form.as_p }} 
         <button type="submit">Upload</button> 
-    </form> 
+    </form>  -->
 
+<div class="row d-flex d-column justify-content-center">
+    <div class="col-md-5 m-auto">
+        <div class="card auto" style="width: 18rem;">
+            <div class="card-body">
+  
+
+                <form method="post" enctype="multipart/form-data"> {% csrf_token %} 
+                    <!-- <p>
+                        <label for="id_name"></label> 
+                        <input type="text" name="name" maxlength="50" required="" id="id_name">
+                    </p> -->
+                 
+            
+                    <div class="form-group">
+                      <label for="id_name">Name:</label>
+                      <input type="text" name="name" id="id_name" class="form-control" placeholder="Enter your hotel name" maxlength="50" required="Name area must be required" aria-describedby="helpId">
+                      <small id="helpId" class="text-muted">Please enter hotle name here</small>
+                    </div>
+            
+                    <p>
+                        <label for="id_hotel_Main_Img">Hotel Main Img:</label> 
+                        <input type="file" name="hotel_Main_Img" accept="image/*" required="" id="id_hotel_Main_Img">
+                    </p> 
+            
+            
+                    <button type="submit">Upload</button> 
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
 {% endblock %}

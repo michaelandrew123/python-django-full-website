@@ -5,7 +5,7 @@ from account.models import Account
 from blog.models import BlogPost
 from blog.views import get_blog_queryset
 from operator import attrgetter
-from comment.forms import CommentForm
+from comment.forms import CommentForm, LikeForm
 from comment.models import Comment
 BLOG_POSTS_PER_PAGE = 10
 
@@ -35,7 +35,7 @@ def home_screen_view(request):
     
     context['blog_posts'] = blog_posts
  
-    if request.POST: 
+    if request.POST:  
         form_comment = CommentForm(request.POST or None) 
         if form_comment.is_valid():  
             #context['comment_success'] = request.POST['blog_post']  
@@ -44,21 +44,26 @@ def home_screen_view(request):
             comment_obj.author = author  
             comment_obj.save()  
             comment_obj = CommentForm() 
+        if request.POST['like_status']:
+            form_like = LikeForm(request.POST or None)
+            like_obj = form_like.save(commit=False)
+            author = Account.objects.filter(email=user.email).first()
+            like_obj.author = author
+            like_obj.save()
+            like_obj = LikeForm() 
+
+            context['success_like'] = "success_like" 
+                
+    # if request.is_ajax():
+    #     body_unicode = request.body.decode('utf-8')
+    #     body = json.loads(body_unicode)
+    #     like_status = body['like_status']     
+    #     context['like_status'] = like_status
 
 
 
-
-
-
-
-    comment_ = Comment.objects.all() 
-
-
-
-
-
+    comment_ = Comment.objects.all()   
     context['comments'] = comment_
-
 
     return render(request, './home.html', context)
 
@@ -68,4 +73,4 @@ def user_account(request):
     context['accounts'] = accounts
     return render(request, './accounts.html', context)
 
-
+ 

@@ -12,7 +12,63 @@
             alert("View more comment " + data);
             
          })
-      
+         // $('.like-blog-post').on('click', function(){
+
+
+         //    alert('Like Blog Post');
+         //    $('.hand-thumbs-up-black')
+         //    $('.hand-thumbs-up-white')
+            
+
+         // });
+
+        
+            // $('.like-blog-post').toggle(
+            //    function(){$(this).css({"color": "red"});},
+            //    function(){$(this).css({"color": "blue"});},
+            //    function(){$(this).css({"color": "green"});
+            // });
+
+         $('.like-blog-post').on('click', function(){ 
+            $(".hand-thumbs-up-black").toggleClass("d-none");
+            $(".hand-thumbs-up-white").toggleClass("d-none");  
+            var inpitLike = $(this).attr('rel');
+            document.querySelector('#'+inpitLike).click();
+
+         });
+         var data;
+         $('.comment-section-blog-post').hide();
+         $('.comment-blog-post').on('click', function(){ 
+            var data = $(this).attr('rel');  
+            $( '#'+data ).slideToggle( "medium" ); 
+ 
+
+            // $('#'+data).slideToggle(500, function(){
+            //    $('#'+data).removeClass('d-none');
+            // });  
+
+
+         //    var obj = {'like_status': 1};
+         //    var myJSON = JSON.stringify(obj);
+         //    $.ajax({
+         //        type: 'POST',
+         //        url: '{% url "home" %}', 
+         //        data:myJSON,
+         //        contentType: 'application/json;charset=UTF-8',
+         //        async: false,
+         //        dataType: 'json',
+         //        success: function (response) {
+         //            document.location.reload(true);
+         //            alert("The text has been changed." + name);
+         //        }
+         //    });
+         });
+
+
+         // $('.counter-comment').attr(rel);
+
+         // var numItems = $('.item').length;
+
          $('textarea').autoResize();
       })
       </script>

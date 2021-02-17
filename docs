@@ -8,7 +8,7 @@ python -V
 djangoproject.com and check the documentations
 before anything else you need to install virtualenv in your system
 
-install virtualenv
+**install virtualenv**
 
 
 create folder in D drive or wherever you like

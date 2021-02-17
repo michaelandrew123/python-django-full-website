@@ -15,3 +15,13 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment
+
+
+class Like(models.Model):
+    like_status         = models.IntegerField(blank=True, null=True) 
+    author              = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)   
+    blog_post           = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.like_status
+
